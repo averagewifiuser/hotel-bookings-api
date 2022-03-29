@@ -1,3 +1,10 @@
-from django.shortcuts import render
+from .models import Room
+from .serializers import RoomSerializer
+from rest_framework import viewsets
 
-# Create your views here.
+
+class RoomViewSet(viewsets.ModelViewSet):
+    queryset = Room.objects.all()
+    serializer_class = RoomSerializer
+    
+
