@@ -9,7 +9,6 @@ class Customer(models.Model):
     email = models.EmailField(null=False, blank=False)
     
 
-
 class Payment(models.Model):
     paid_by = models.ForeignKey(Customer, on_delete=models.RESTRICT)
     paid_on = models.DateTimeField(default=timezone.now)

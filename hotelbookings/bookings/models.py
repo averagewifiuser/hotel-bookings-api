@@ -14,8 +14,8 @@ class Room(models.Model):
 
 
 class Booking(models.Model):
-    room = models.ForeignKey(Room, default=None)
-    booked_by = models.ForeignKey('customers.Customer', default=None)
+    room = models.ForeignKey(Room, default=None, on_delete=models.RESTRICT)
+    booked_by = models.ForeignKey('customers.Customer', default=None, on_delete=models.RESTRICT)
     start = models.DateTimeField(default=timezone.now)
     end = models.DateTimeField(default=one_day_hence)
     confirmed = models.BooleanField(default=False)
