@@ -1,11 +1,11 @@
 from django.db import models
 from django.utils import timezone
-
+from django.core.validators import MinLengthValidator
 
 class Customer(models.Model):
     name = models.CharField(max_length=100, blank=False, null=False)
     #TODO: update to use phonenumbers
-    phone_number = models.CharField(max_length=13, blank=False, null=False)
+    phone_number = models.CharField(max_length=13, validators=[MinLengthValidator(10)], blank=False, null=False)
     email = models.EmailField(null=False, blank=False)
     
 
