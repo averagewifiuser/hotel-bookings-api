@@ -22,5 +22,5 @@ class Booking(models.Model):
     booked_by = models.ForeignKey('customers.Customer', default=None, on_delete=models.RESTRICT)
     start = models.DateTimeField(default=timezone.now)
     end = models.DateTimeField(default=one_day_hence)
-    code = models.CharField(default=None, default=generate_room_code, max_length=10, unique=True)
+    code = models.CharField(default=generate_room_code, max_length=10, unique=True)
     confirmed = models.BooleanField(default=False)
