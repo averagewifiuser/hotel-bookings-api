@@ -1,8 +1,12 @@
 from django.db import models
-from django.utils import timezone
+from django.utils import timezone, crypto
+import string
 
 def one_day_hence():
     return timezone.now() + timezone.timedelta(days=1)
+
+def generate_room_code():
+    return crypto.get_random_string(9, allowed_chars=string.ascii_uppercase + string.digits)
 
 
 class Room(models.Model):
@@ -18,4 +22,5 @@ class Booking(models.Model):
     booked_by = models.ForeignKey('customers.Customer', default=None, on_delete=models.RESTRICT)
     start = models.DateTimeField(default=timezone.now)
     end = models.DateTimeField(default=one_day_hence)
+    code = models.CharField(default=None, default=generate_room_code, max_length=10, unique=True)
     confirmed = models.BooleanField(default=False)
